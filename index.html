@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue 3 course</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .box {
+        display: inline-block;
+        background-color: antiquewhite;
+        color: black;
+        padding: 0 100px;
+        text-align: center;
+        height: 200px;
+        width: 400px;
+        margin-bottom: 10px;
+      }
+      .fav {
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello vue 3 :)</h1>
+    <div id="app">
+      <div v-if="show">
+        <p>{{ name }} - {{ age }} - {{ title }}</p>
+      </div>
+      <div v-show="show">Description</div>
+
+      <button v-on:click="age++">Increase age</button>
+      <button @click="age--">Decrease age</button>
+      <button @click="updateTitle('back end')">update title</button>
+      <button @click="toggle">
+        <span v-if="show">Hide</span>
+        <span v-else>show</span>
+      </button>
+
+      <br />
+      <div class="box" @mouseover="handleEvent($event, 5)">MouseOver</div>
+      <div class="box" @mouseleave="handleEvent">MouseLeave</div>
+      <div class="box" @dblclick="handleEvent">dbClick</div>
+      <div class="box" @mousemove="handleMouseMove">
+        position {{ x }} - {{ y }}
+      </div>
+
+      <br />
+      <ul>
+        <li
+          v-for="book in filteredBook"
+          :class="{fav: book.isFav}"
+          @click="toggleFav(book)"
+        >
+          <img :src="book.src" :alt="book.title" />
+          <h3>{{ book.title }}</h3>
+          <p>{{ book. desc }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
